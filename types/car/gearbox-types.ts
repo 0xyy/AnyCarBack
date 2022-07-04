@@ -1,4 +1,4 @@
-export enum gearboxTypes {
+export enum GearboxTypes {
     Manual = 'Manualna',
     Automatic = 'Automatyczna',
 }

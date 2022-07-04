@@ -1,4 +1,4 @@
-export enum fuelTypes {
+export enum FuelTypes {
     Petrol = 'Benzyna',
     Diesel = 'Diesel',
     LPG = 'LPG',

@@ -1,6 +1,6 @@
-import { fuelTypes } from './fuel-types';
-import { gearboxTypes } from './gearbox-types';
-import { bodyTypes } from './body-types';
+import { FuelTypes } from './fuel-types';
+import { GearboxTypes } from './gearbox-types';
+import { BodyTypes } from './body-types';
 
 export interface NewCarEntity extends Omit<CarEntity, 'id'> {
     id?: string;
@@ -10,17 +10,17 @@ export interface SimpleCarEntity {
     id: string;
     brand: string;
     model: string;
-    fullName: string;
+    adName: string;
     price: number;
 }
 
 export interface CarEntity extends SimpleCarEntity {
     yearOfProduction: number;
-    mileage: number;
+    kilometrage: number;
     hp: number;
-    fuel: fuelTypes;
-    gearbox: gearboxTypes;
-    bodyType: bodyTypes;
+    fuel: FuelTypes;
+    gearbox: GearboxTypes;
+    bodyType: BodyTypes;
     color: string;
     accidentFree: boolean;
     description: string;
