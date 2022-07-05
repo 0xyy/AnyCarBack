@@ -1,9 +1,10 @@
-import express, { json } from 'express';
+import express, { json, Router } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import { handleError } from './utils/errors';
 import rateLimit from 'express-rate-limit';
 import { config } from './config/config';
+import { carRouter } from './routers/car.router';
 
 const app = express();
 
@@ -16,9 +17,11 @@ app.use(rateLimit({
 }));
 app.use(json());
 
-app.get('/', async (res, req) => {
-    throw new Error('ELO');
-});
+const router = Router();
+
+router.use('/car', carRouter);
+
+app.use('/api', router);
 
 app.use(handleError);
 

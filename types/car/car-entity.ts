@@ -22,6 +22,6 @@ export interface CarEntity extends SimpleCarEntity {
     gearbox: GearboxTypes;
     bodyType: BodyTypes;
     color: string;
-    accidentFree: boolean;
-    description: string;
+    accidentFree: boolean | Buffer;
+    description: string | null;
 }
