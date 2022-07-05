@@ -23,21 +23,21 @@ export class CarRecord implements CarEntity {
     public description: string;
 
     constructor({
-                    id,
-                    brand,
-                    model,
-                    adName,
-                    price,
-                    yearOfProduction,
-                    kilometrage,
-                    hp,
-                    fuel,
-                    gearbox,
-                    bodyType,
-                    color,
-                    accidentFree,
-                    description
-                }: NewCarEntity) {
+        id,
+        brand,
+        model,
+        adName,
+        price,
+        yearOfProduction,
+        kilometrage,
+        hp,
+        fuel,
+        gearbox,
+        bodyType,
+        color,
+        accidentFree,
+        description
+    }: NewCarEntity) {
         if (!brand || brand.length > 20) {
             throw new ValidationError('Marka samochodu nie może być pusta, ani przekraczać 20 znaków');
         }
