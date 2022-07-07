@@ -113,14 +113,14 @@ describe('CarRecord validation', () => {
     });
 
     test('Validating invalid description should throw when description exist and is longer than 255 characters.', () => {
-        let text = '';
+        let description = '';
         for (let i = 0; i <= 255; i++) {
-            text += '-';
+            description += '-';
         }
 
         expect(() => new CarRecord({
             ...testObj,
-            description: text,
+            description,
         })).toThrow('Opis nie może być dłuższy niż 255 znaków.');
     });
 
