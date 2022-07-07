@@ -39,18 +39,18 @@ export class CarRecord implements CarEntity {
         description
     }: NewCarEntity) {
         if (!brand || brand.length > 20) {
-            throw new ValidationError('Marka samochodu nie może być pusta, ani przekraczać 20 znaków');
+            throw new ValidationError('Marka samochodu nie może być pusta, ani przekraczać 20 znaków.');
         }
 
         if (!model || model.length > 50) {
-            throw new ValidationError('Model samochodu nie może być pusty, ani przekraczać 50 znaków');
+            throw new ValidationError('Model samochodu nie może być pusty, ani przekraczać 50 znaków.');
         }
 
         if (!adName || adName.length > 70) {
-            throw new ValidationError('Nazwa ogłoszenia nie może być pusta, ani przekraczać 70 znaków');
+            throw new ValidationError('Nazwa ogłoszenia nie może być pusta, ani przekraczać 70 znaków.');
         }
 
-        if (price < 0 || price > 10000000) {
+        if (price < 0 || price > 10000000 || typeof price !== 'number') {
             throw new ValidationError('Cena samochodu nie może być ujemna i nie może przekraczać 10 000 000 PLN.');
         }
 
@@ -58,11 +58,11 @@ export class CarRecord implements CarEntity {
             throw new ValidationError('Nie udało się określić poprawnego roku produkcji samochodu.');
         }
 
-        if (!kilometrage || typeof kilometrage !== 'number') {
+        if (!kilometrage || kilometrage < 0 || typeof kilometrage !== 'number') {
             throw new ValidationError('Nie udało się określić poprawnego przebiegu samochodu.');
         }
 
-        if (!hp || typeof hp !== 'number') {
+        if (!hp || typeof hp !== 'number' || hp < 0) {
             throw new ValidationError('Nie udało się określić poprawnej mocy (km) samochodu.');
         }
 
@@ -84,9 +84,10 @@ export class CarRecord implements CarEntity {
 
         let boolAccidentFree;
         if (typeof accidentFree !== 'boolean') {
-            boolAccidentFree = !!Buffer.from(accidentFree as any).readInt8();
-            if (typeof boolAccidentFree !== 'boolean') {
+            if (accidentFree === null || typeof accidentFree !== 'object') {
                 throw new ValidationError('Nie udało się określić bezwypadkowości samochodu.');
+            } else {
+                boolAccidentFree = !!Buffer.from(accidentFree as any).readInt8();
             }
         }
 
