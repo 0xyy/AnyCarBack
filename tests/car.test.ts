@@ -48,8 +48,8 @@ describe('CarRecord', () => {
         const car = cars[0] as CarEntity;
 
         expect(car.id).toBeDefined();
-        expect(car.model).toBeDefined();
-        expect(car.bodyType).toBeUndefined();
+        expect(car.adName).toBeDefined();
+        expect(car.brand).toBeUndefined();
         expect(car.yearOfProduction).toBeUndefined();
     });
 
