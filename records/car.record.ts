@@ -21,6 +21,7 @@ export class CarRecord implements CarEntity {
     public color: string;
     public accidentFree: boolean | Buffer;
     public description: string;
+    public createdAt: Date;
 
     constructor({
         id,
@@ -36,7 +37,8 @@ export class CarRecord implements CarEntity {
         bodyType,
         color,
         accidentFree,
-        description
+        description,
+        createdAt,
     }: NewCarEntity) {
         if (!brand || brand.length > 20) {
             throw new ValidationError('Marka samochodu nie może być pusta, ani przekraczać 20 znaków.');
@@ -109,6 +111,7 @@ export class CarRecord implements CarEntity {
         this.color = color;
         this.accidentFree = boolAccidentFree ?? accidentFree;
         this.description = description === '' ? null : description;
+        this.createdAt = createdAt;
     }
 
     static async getAll(adName: string): Promise<SimpleCarEntity[]> {
@@ -119,16 +122,12 @@ export class CarRecord implements CarEntity {
         return results.map(result => {
             const {
                 id,
-                brand,
-                model,
                 adName,
                 price,
             } = result;
 
             return {
                 id,
-                brand,
-                model,
                 adName,
                 price: +price.toFixed(2),
             };
