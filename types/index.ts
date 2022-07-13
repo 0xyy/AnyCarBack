@@ -1,1 +1,2 @@
-export * from './test';
+export * from './car';
+export * from './image';
