@@ -18,5 +18,5 @@ export const carRouter = Router()
     .post('/', async (req, res) => {
         const newCar = new CarRecord(req.body);
         await newCar.add();
-        res.json(newCar.adName);
+        res.json(newCar.id);
     });
