@@ -6,6 +6,7 @@ import { config } from './config/config';
 import { carRouter } from './routers/car.router';
 import { imageRouter } from './routers/image.router';
 import fileUpload from 'express-fileupload';
+import path from 'path';
 
 const app = express();
 
@@ -14,8 +15,10 @@ app.use(cors({
 }));
 app.use(json());
 app.use(fileUpload());
+app.use('/api/images', express.static(path.join(__dirname, 'public/images')));
 
 const router = Router();
+
 
 router.use('/car', carRouter);
 router.use('/image', imageRouter);
