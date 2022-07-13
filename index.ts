@@ -2,24 +2,23 @@ import express, { json, Router } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import { handleError } from './utils/errors';
-import rateLimit from 'express-rate-limit';
 import { config } from './config/config';
 import { carRouter } from './routers/car.router';
+import { imageRouter } from './routers/image.router';
+import fileUpload from 'express-fileupload';
 
 const app = express();
 
 app.use(cors({
     origin: config.corsOrigin,
 }));
-app.use(rateLimit({
-    windowMs: 5 * 60 * 1000,
-    max: 100,
-}));
 app.use(json());
+app.use(fileUpload());
 
 const router = Router();
 
 router.use('/car', carRouter);
+router.use('/image', imageRouter);
 
 app.use('/api', router);
 
