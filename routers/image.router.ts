@@ -22,7 +22,7 @@ export const imageRouter = Router()
         });
         await newImage.insert();
 
-        const filePath = `${__dirname}/../../anycar-front/public/uploads/${fileName}`;
+        const filePath = `${__dirname}/../../../public_html/uploads/${fileName}`;
 
         file.mv(filePath, (err) => {
             if (err) {
