@@ -23,7 +23,7 @@ export const imageRouter = Router()
             });
             await newImage.insert();
 
-            const filePath = `${__dirname}/../public/images/${fileName}`;
+            const filePath = `${__dirname}/../../public/images/${fileName}`;
 
             file.mv(filePath, (err) => {
                 if (err) {
